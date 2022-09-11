@@ -21,6 +21,13 @@ WHERE crn in (SELECT courses_crn
                                                             FROM departments
                                                             WHERE name = "BIF");
 
+-- Query 5
+
+SELECT name
+FROM students
+WHERE id not in (SELECT students_id
+                 FROM enrolls);
+
 
 
 
