@@ -13,11 +13,11 @@ WHERE start_time = (SELECT MIN(start_time)
 
 SELECT name
 FROM courses
-WHERE crn in (SELECT courses_crn
+WHERE crn IN (SELECT courses_crn
               FROM enrolls
-              WHERE students_id in (SELECT students_id
-                                   FROM majorsin 
-                                   WHERE departments_id in (SELECT id
+              WHERE students_id IN (SELECT students_id
+                                   FROM majorsIN 
+                                   WHERE departments_id IN (SELECT id
                                                             FROM departments
                                                             WHERE name = "BIF");
 
@@ -25,7 +25,7 @@ WHERE crn in (SELECT courses_crn
 
 SELECT name
 FROM students
-WHERE id not in (SELECT students_id
+WHERE id not IN (SELECT students_id
                  FROM enrolls);
 
 -- Query 6
@@ -37,13 +37,34 @@ WHERE id IN (SELECT students_id
               WHERE courses_crn IN (SELECT crn
                                     FROM courses
                                     WHERE name = "CSC275") AND students_id IN (SELECT students_id
-                                                                                FROM majorsin
+                                                                                FROM majorsIN
                                                                                 WHERE departments_id IN (SELECT id
                                                                                                           FROM departments
                                                                                                           WHERE name = "CS")))
 
 
 -- Query 7
+
+SELECT COUNT(*)
+FROM students
+WHERE id IN (SELECT students_id
+              FROM enrolls
+              WHERE students_id IN (SELECT students_id 
+                                   	FROM majorsin
+                                    WHERE departments_id  IN (SELECT id
+                                                              FROM departments
+                                                              WHERE name = "CS")));
+                                                              
+                                                                                
+                                                                                                          
+                                                                       					
+                                                                                
+                                                                             
+                                                                                               
+                                                                      
+                                                                     
+                                                                     
+                                                    
 
 
                                                                               					
